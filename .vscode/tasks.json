@@ -1,0 +1,69 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "C/C++: g++ build and run",
+            "command": "/bin/bash",
+            "args": [
+                "-c",
+                "mkdir -p '${fileDirname}/../../../build' && /usr/bin/g++ -g '${file}' -o '${fileDirname}/../../../build/${fileBasenameNoExtension}' -I/usr/local/include -std=c++17 && echo '--- 실행 결과 ---' && '${fileDirname}/../../../build/${fileBasenameNoExtension}'"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "focus": true,
+                "clear": true,
+                "showReuseMessage": true
+            }
+        },
+        {
+            "type": "shell", // mkdir 명령어를 사용하기 위해 type을 shell로 변경했습니다.
+            "label": "C/C++: g++ build active file",
+            "command": "/bin/bash",
+            "args": [
+                "-c",
+                "mkdir -p '${fileDirname}/../../../build' && /usr/bin/g++ -fdiagnostics-color=always -g '${file}' -o '${fileDirname}/../../../build/${fileBasenameNoExtension}'"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "type": "shell", // clang++ 버전
+            "label": "C/C++: clang++ build active file",
+            "command": "/bin/bash",
+            "args": [
+                "-c",
+                "mkdir -p '${fileDirname}/../../../build' && /usr/bin/clang++ -fcolor-diagnostics -fansi-escape-codes -g '${file}' -o '${fileDirname}/../../../build/${fileBasenameNoExtension}'"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
