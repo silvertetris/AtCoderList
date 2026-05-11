@@ -66,24 +66,24 @@ int main()
             cout << 0 << "\n";
             continue;
         }
-        if(n==1) {
-            cout<<1<<"\n";
+        if (n == 1)
+        {
+            cout << 1 << "\n";
             continue;
         }
-        int idx = 1;
+
         for (auto i = 1; i <= n; i++)
         {
-            if (idx > indices[i])
+            if (indices[i]!=i)
             {
                 break;
             }
             else
             {
-                res += (ll)(n - indices[i])%MOD;
-                res%=MOD;
-                idx = indices[i];
+                res += max(1ll, (ll)(n - indices[i])) % MOD;
+                res %= MOD;
             }
         }
-        cout<<res<<"\n";
+        cout << res << "\n";
     }
 }
