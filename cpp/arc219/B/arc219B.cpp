@@ -74,7 +74,7 @@ int main()
 
         for (auto i = 1; i <= n; i++)
         {
-            if (indices[i]!=i)
+            if (indices[i]>i)
             {
                 break;
             }
