@@ -22,7 +22,7 @@ int main() {
         그니까 두 반지름 차이가, 원의 거리보다 작아야함
 
         */
-        ll circleDist = (x1-x2) * (x1-x2) + (y1-y2) * (y1-y2);
+        ll circleDist = (x1-x2) * (x1-x2) + (y1-y2) * (y1-y2);r=
         
         ll radiusDist = (r1+r2)*(r1+r2);
         if((r1-r2)*(r1-r2)<=circleDist && circleDist<=radiusDist) {
