@@ -14,30 +14,45 @@ int main() {
 
     cin>>h>>w>>k;
 
-    vector<vector<int>> s(h, vector<int> (w));
+    vector<vector<int>> s(h+1, vector<int> (w+1, 0));
 
-    for(int i=0; i<h; i++) {
+    for(int i=1; i<=h; i++) {
         string temp ="";
         cin>>temp;
 
-        for(int j=0; j<w; j++) {
-            s[i][j] = temp[j]-'0';
+        for(int j=1; j<=w; j++) {
+            s[i][j] = temp[j-1]-'0';
         }
     }
 
-    vector<vector<int>> rowPrefix(h+1, vector<int> (w+1, 0));
-    vector<vector<int>> columnPrefix(h+1, vector<int> (w+1, 0));
     for(int i=1; i<=h; i++) {
         for(int j=1; j<=w; j++) {
-            rowPrefix[i][j] = rowPrefix[i-1][j] + s[i-1][j-1];
+            s[i][j] +=s[i-1][j];
         }
     }
-    for(int i=1; i<=w; i++) {
-        for(int j=1; j<=h; j++) {
-            columnPrefix[j][i] = columnPrefix[j][i-1]+ s[j-1][i-1];
+
+    ll res = 0;
+    for(int i=1; i<=h; i++) {
+        for(int j=i; j<=h; j++) {
+            vector<int> save(w+1, 0);
+            for(int p=1; p<=w; p++) {
+                save[p] = save[p-1] + (s[j][p] - s[i-1][p]);
+            }
+            int r1=0;
+            int r2=0;
+            for(int l=0; l<w; l++) {//l을 직전까지 붙일거
+                r1 = max(r1, l+1);
+                r2 = max(r2, l+1);
+                while(r1<=w && save[r1]- save[l]<k) {
+                    r1++;
+                }
+                while(r2<=w && save[r2]-save[l]<=k) {
+                    r2++;
+                }
+                res+=r2-r1;
+            }
         }
     }
-    for(int i=0; i<n; i++) {
-        
-    }    
+
+    cout<<res<<"\n";
 }
